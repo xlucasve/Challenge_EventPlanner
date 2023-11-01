@@ -1,11 +1,12 @@
 package com.vonelm.apibackend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "USERS")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +17,15 @@ public class User {
     private String password;
 
     private Boolean admin;
+
+    @JsonBackReference
+    @ManyToMany (fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "INSCRIPTIONS",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id")
+    )
+    private List<Event> events;
 
 
     public Integer getUser_id() {
@@ -48,5 +58,13 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         this.admin = admin;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }
