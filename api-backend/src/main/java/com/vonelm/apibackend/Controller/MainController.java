@@ -46,4 +46,9 @@ public class MainController {
     public String deleteOneEvent(@PathVariable Integer id){
         return eventService.deleteOneEvent(id);
     }
+
+    @PutMapping(path="/event/update")
+    public @ResponseBody Event updateEvent(@RequestBody Event event){
+        return eventService.updateEvent(event);
+    }
 }

@@ -5,6 +5,8 @@ import com.vonelm.apibackend.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EventService {
 
@@ -19,12 +21,20 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    public void deleteEvent(){
-
-    }
-
     public String deleteOneEvent(Integer id) {
         eventRepository.deleteById(id);
         return "Deleted";
+    }
+
+    public Event updateEvent(Event updatedEvent) {
+        Event storedEvent = eventRepository.findById(updatedEvent.getEvent_id()).get();
+
+        storedEvent.setTitle(updatedEvent.getTitle());
+        storedEvent.setLongDescription(updatedEvent.getLongDescription());
+        storedEvent.setShortDescription(updatedEvent.getShortDescription());
+        storedEvent.setLocation(updatedEvent.getLocation());
+        storedEvent.setStatus(updatedEvent.getStatus());
+
+        return eventRepository.save(storedEvent);
     }
 }
