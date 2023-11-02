@@ -42,4 +42,8 @@ public class UserService {
         eventRepository.save(foundEvent);
         return foundUser;
     }
+
+    public Iterable<Event> getAllEventsByUserEmail(User user) {
+        return userRepository.findByEmail(user.getEmail()).get().getEvents();
+    }
 }

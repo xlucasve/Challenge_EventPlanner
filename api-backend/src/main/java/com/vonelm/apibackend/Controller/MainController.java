@@ -63,4 +63,9 @@ public class MainController {
     public Iterable<Event> getAllCompletedEvents(){
         return eventService.getAllCompletedEvents();
     }
+
+    @GetMapping(path = "planner/event/byEmail")
+    public Iterable<Event> getAllEventsByUserEmail(@RequestBody User user){
+        return userService.getAllEventsByUserEmail(user);
+    }
 }
