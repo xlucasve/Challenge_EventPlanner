@@ -1,6 +1,7 @@
 package com.vonelm.apibackend.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -26,6 +27,7 @@ public class Event {
     @Column(name = "long_description")
     private String longDescription;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant date;
 
     private String location;
