@@ -3,14 +3,16 @@ package com.vonelm.apibackend.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_id;
+    @Column(name = "user_id")
+    private Integer userId;
 
     private String email;
 
@@ -18,22 +20,21 @@ public class User {
 
     private Boolean admin;
 
-    @JsonBackReference
-    @ManyToMany (fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "INSCRIPTIONS",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id")
     )
-    private List<Event> events;
+    private Set<Event> events;
 
 
     public Integer getUser_id() {
-        return user_id;
+        return userId;
     }
 
     public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public String getEmail() {
@@ -60,11 +61,11 @@ public class User {
         this.admin = admin;
     }
 
-    public List<Event> getEvents() {
+    public Set<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(List<Event> events) {
+    public void setEvents(Set<Event> events) {
         this.events = events;
     }
 }

@@ -1,18 +1,22 @@
 package com.vonelm.apibackend.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "EVENTS")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer event_id;
+    @Column (name = "event_id")
+    private Integer eventId;
 
     private String title;
 
@@ -28,16 +32,16 @@ public class Event {
 
     private Boolean status;
 
-    @ManyToMany(mappedBy = "events",
-    fetch = FetchType.LAZY)
-    private List<User> users;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "events")
+    private Set<User> users;
 
     public Integer getEvent_id() {
-        return event_id;
+        return eventId;
     }
 
     public void setEvent_id(Integer event_id) {
-        this.event_id = event_id;
+        this.eventId = event_id;
     }
 
     public String getTitle() {
@@ -88,11 +92,11 @@ public class Event {
         this.status = status;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 }
