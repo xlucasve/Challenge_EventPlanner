@@ -29,6 +29,7 @@ public class EventService {
     public Event updateEvent(Event updatedEvent) {
         Event storedEvent = eventRepository.findById(updatedEvent.getEvent_id()).get();
 
+        //Make copy of Event with new data
         storedEvent.setTitle(updatedEvent.getTitle());
         storedEvent.setLongDescription(updatedEvent.getLongDescription());
         storedEvent.setShortDescription(updatedEvent.getShortDescription());
@@ -36,5 +37,13 @@ public class EventService {
         storedEvent.setStatus(updatedEvent.getStatus());
 
         return eventRepository.save(storedEvent);
+    }
+
+    public Iterable<Event> getAllActiveEvents() {
+        return eventRepository.findAllActiveEvents();
+    }
+
+    public Iterable<Event> getAllCompletedEvents() {
+        return eventRepository.findAllCompletedEvents();
     }
 }

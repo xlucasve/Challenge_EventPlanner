@@ -20,14 +20,13 @@ public class MainController {
     @Autowired
     private EventService eventService;
 
-    //Working demo to check Database connection
     @PostMapping(path="/user/add")
-    public @ResponseBody User addNewUser (@RequestBody User user) {
+    public User addNewUser (@RequestBody User user) {
         return userService.addNewUser(user);
     }
 
     @GetMapping(path="/user")
-    public @ResponseBody Iterable<User> getAllUsers() {
+    public Iterable<User> getAllUsers() {
         return userService.findAll();
     }
 
@@ -37,12 +36,12 @@ public class MainController {
     }
 
     @PostMapping(path="/planner/event")
-    public @ResponseBody Event addNewEvent (@RequestBody Event event) {
+    public Event addNewEvent (@RequestBody Event event) {
         event.setDate(Instant.now()); //Set Timestamp
         return eventService.addNewEvent(event);
     }
     @GetMapping(path="/planner/event")
-    public @ResponseBody Iterable<Event> getAllEvents(){
+    public Iterable<Event> getAllEvents(){
         return eventService.findAll();
     }
 
@@ -52,7 +51,16 @@ public class MainController {
     }
 
     @PutMapping(path="/planner/event")
-    public @ResponseBody Event updateEvent(@RequestBody Event event){
+    public Event updateEvent(@RequestBody Event event){
         return eventService.updateEvent(event);
+    }
+
+    @GetMapping(path = "planner/event/active")
+    public Iterable<Event> getAllActiveEvents(){
+        return eventService.getAllActiveEvents();
+    }
+    @GetMapping(path = "planner/event/complete")
+    public Iterable<Event> getAllCompletedEvents(){
+        return eventService.getAllCompletedEvents();
     }
 }
