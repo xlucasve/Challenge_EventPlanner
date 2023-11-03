@@ -12,4 +12,13 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     //STATUS FALSE (0 in MySQL) = Completed Event
     @Query(value = "SELECT e FROM Event e WHERE e.status = false")
     Iterable<Event> findAllCompletedEvents();
+
+    @Query(value = "SELECT e FROM Event e ORDER BY e.date")
+    Iterable<Event> getAllEventsOrderedByDate();
+
+    @Query(value = "SELECT e from Event e ORDER BY e.status")
+    Iterable<Event> getAllEventsOrderedByStatus();
+
+    @Query(value = "SELECT e FROM Event e ORDER BY e.title ")
+    Iterable<Event> getAllEventsOrderedByTitle();
 }

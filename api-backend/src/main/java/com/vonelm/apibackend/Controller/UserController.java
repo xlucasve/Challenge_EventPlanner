@@ -2,23 +2,16 @@ package com.vonelm.apibackend.Controller;
 
 import com.vonelm.apibackend.Model.Event;
 import com.vonelm.apibackend.Model.User;
-import com.vonelm.apibackend.Service.EventService;
 import com.vonelm.apibackend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.Instant;
 
 @RestController
 @RequestMapping(path="/api/v1")
-public class MainController {
+public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private EventService eventService;
 
     @PostMapping(path="/user/add")
     public User addNewUser (@RequestBody User user) {

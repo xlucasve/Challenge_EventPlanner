@@ -34,13 +34,24 @@ public class EventController {
         return eventService.updateEvent(event);
     }
 
-    @GetMapping(path = "planner/event/active")
+    @GetMapping(path = "/planner/event/active")
     public Iterable<Event> getAllActiveEvents(){
         return eventService.getAllActiveEvents();
     }
-    @GetMapping(path = "planner/event/complete")
+    @GetMapping(path = "/planner/event/complete")
     public Iterable<Event> getAllCompletedEvents(){
         return eventService.getAllCompletedEvents();
     }
 
-}
+    @GetMapping(path = "/planner/event/order/date")
+    public Iterable<Event> getAllEventsOrderedByDate(){return eventService.getAllEventsOrderedByDate();}
+
+    @GetMapping(path = "/planner/event/order/status")
+    public Iterable<Event> getAllEventsOrderedByStatus(){return eventService.getAllEventsOrderedByStatus();}
+
+    @GetMapping(path = "/planner/event/order/title")
+    public Iterable<Event> getAllEventsOrderedByTitle() {
+        return eventService.getAllEventsOrderedByTitle();
+    }
+
+    }

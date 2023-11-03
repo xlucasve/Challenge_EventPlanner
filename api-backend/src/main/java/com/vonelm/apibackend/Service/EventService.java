@@ -5,7 +5,6 @@ import com.vonelm.apibackend.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class EventService {
@@ -45,5 +44,17 @@ public class EventService {
 
     public Iterable<Event> getAllCompletedEvents() {
         return eventRepository.findAllCompletedEvents();
+    }
+
+    public Iterable<Event> getAllEventsOrderedByDate() {
+        return eventRepository.getAllEventsOrderedByDate();
+    }
+
+    public Iterable<Event> getAllEventsOrderedByStatus() {
+        return eventRepository.getAllEventsOrderedByStatus();
+    }
+
+    public Iterable<Event> getAllEventsOrderedByTitle(){
+        return eventRepository.getAllEventsOrderedByTitle();
     }
 }
