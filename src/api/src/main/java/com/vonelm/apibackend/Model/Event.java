@@ -35,7 +35,7 @@ public class Event {
     private Boolean status;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "events")
+    @ManyToMany(mappedBy = "events", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<User> users;
 
     public Integer getEvent_id() {

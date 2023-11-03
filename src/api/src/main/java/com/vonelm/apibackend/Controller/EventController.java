@@ -27,8 +27,8 @@ public class EventController {
     }
 
     @DeleteMapping(path = "/planner/event/{id}")
-    public String deleteOneEvent(@PathVariable Integer id){
-        return eventService.deleteOneEvent(id);
+    public ResponseEntity<String> deleteOneEvent(@PathVariable Integer id, @RequestBody User user){
+        return eventService.deleteOneEvent(id, user);
     }
 
     @PutMapping(path="/planner/event")

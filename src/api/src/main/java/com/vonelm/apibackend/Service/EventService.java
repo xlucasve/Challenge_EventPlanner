@@ -47,9 +47,26 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    public String deleteOneEvent(Integer id) {
-        eventRepository.deleteById(id);
-        return "Deleted";
+    public ResponseEntity<String> deleteOneEvent(Integer id, User user) {
+        Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        String message;
+
+        if (lookUpUser.isPresent()) {
+            if (lookUpUser.get().getAdmin()) {
+                if (eventRepository.findById(id).isPresent()){
+                    eventRepository.deleteById(id);
+                    message = "Event succesfully deleted";
+                    return new ResponseEntity<>(message, HttpStatus.OK);
+                } else{
+                    message = "Event does not exist";
+                    return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+                }
+            }
+            message = "User does not have permissions required";
+            return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+        }
+        message = "User does not exist";
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     public Event updateEvent(Event updatedEvent) {
