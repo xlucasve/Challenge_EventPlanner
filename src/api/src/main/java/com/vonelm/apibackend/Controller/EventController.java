@@ -1,9 +1,11 @@
 package com.vonelm.apibackend.Controller;
 
+import com.vonelm.apibackend.Model.CRUDContext;
 import com.vonelm.apibackend.Model.Event;
 import com.vonelm.apibackend.Model.User;
 import com.vonelm.apibackend.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -16,8 +18,8 @@ public class EventController {
     private EventService eventService;
 
     @PostMapping(path="/planner/event")
-    public Event addNewEvent (@RequestBody Event event) {
-        return eventService.addNewEvent(event);
+    public ResponseEntity<String> addNewEvent (@RequestBody CRUDContext crudContext) {
+        return eventService.addNewEvent(crudContext);
     }
     @GetMapping(path="/planner/event")
     public Iterable<Event> getAllEvents(){
