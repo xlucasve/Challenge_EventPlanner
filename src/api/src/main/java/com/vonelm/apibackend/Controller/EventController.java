@@ -32,8 +32,8 @@ public class EventController {
     }
 
     @PutMapping(path="/planner/event")
-    public Event updateEvent(@RequestBody Event event){
-        return eventService.updateEvent(event);
+    public ResponseEntity<String> updateOneEvent(@RequestBody CRUDContext crudContext){
+        return eventService.updateEvent(crudContext);
     }
 
     @GetMapping(path = "/planner/event/active")

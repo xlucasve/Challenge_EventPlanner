@@ -1,9 +1,7 @@
 package com.vonelm.apibackend.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +16,8 @@ public class User {
 
     private String password;
 
-    private Boolean admin;
+    @Column(name = "is_admin")
+    private Boolean isAdmin;
 
     @ManyToMany
     @JoinTable(
@@ -53,12 +52,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getAdmin() {
-        return admin;
+    public Boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
+    public void setIsAdmin(Boolean admin) {
+        this.isAdmin = admin;
     }
 
     public Set<Event> getEvents() {

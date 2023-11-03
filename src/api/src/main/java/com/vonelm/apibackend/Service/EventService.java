@@ -29,7 +29,7 @@ public class EventService {
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         String message;
         if (lookUpUser.isPresent()){
-            if (lookUpUser.get().getAdmin()){
+            if (lookUpUser.get().isAdmin()){
                 eventRepository.save(event);
                 message = "Succesfully added";
                 return new ResponseEntity<>(message, HttpStatus.OK);
@@ -52,7 +52,7 @@ public class EventService {
         String message;
 
         if (lookUpUser.isPresent()) {
-            if (lookUpUser.get().getAdmin()) {
+            if (lookUpUser.get().isAdmin()) {
                 if (eventRepository.findById(id).isPresent()){
                     eventRepository.deleteById(id);
                     message = "Event succesfully deleted";
@@ -69,17 +69,39 @@ public class EventService {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    public Event updateEvent(Event updatedEvent) {
-        Event storedEvent = eventRepository.findById(updatedEvent.getEvent_id()).get();
+    public ResponseEntity<String> updateEvent(CRUDContext crudContext) {
+        User user = crudContext.getUserContext();
+        Event eventUpdate = crudContext.getEventContext();
+        Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        String message;
 
-        //Make copy of Event with new data
-        storedEvent.setTitle(updatedEvent.getTitle());
-        storedEvent.setLongDescription(updatedEvent.getLongDescription());
-        storedEvent.setShortDescription(updatedEvent.getShortDescription());
-        storedEvent.setLocation(updatedEvent.getLocation());
-        storedEvent.setStatus(updatedEvent.getStatus());
+        if (lookUpUser.isPresent()) {
+            if (lookUpUser.get().isAdmin()) {
+                if (eventRepository.findById(eventUpdate.getEvent_id()).isPresent()){
 
-        return eventRepository.save(storedEvent);
+                    Event storedEvent = eventRepository.findById(eventUpdate.getEvent_id()).get();
+
+                    //Make copy of Event with new data
+                    storedEvent.setTitle(eventUpdate.getTitle());
+                    storedEvent.setLongDescription(eventUpdate.getLongDescription());
+                    storedEvent.setShortDescription(eventUpdate.getShortDescription());
+                    storedEvent.setLocation(eventUpdate.getLocation());
+                    storedEvent.setStatus(eventUpdate.getStatus());
+
+                    //Save updated Event
+                    eventRepository.save(storedEvent);
+                    message = "Event succesfully updated";
+                    return new ResponseEntity<>(message, HttpStatus.OK);
+                } else{
+                    message = "Event does not exist";
+                    return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+                }
+            }
+            message = "User does not have permissions required";
+            return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+        }
+        message = "User does not exist";
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     public Iterable<Event> getAllActiveEvents() {
