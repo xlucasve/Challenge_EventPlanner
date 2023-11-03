@@ -1,7 +1,9 @@
 package com.vonelm.apibackend.Service;
 
 import com.vonelm.apibackend.Model.Event;
+import com.vonelm.apibackend.Model.User;
 import com.vonelm.apibackend.Repository.EventRepository;
+import com.vonelm.apibackend.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ public class EventService {
 
     @Autowired
     private EventRepository eventRepository;
+
 
     public Event addNewEvent(Event event) {
         return eventRepository.save(event);

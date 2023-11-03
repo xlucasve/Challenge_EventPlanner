@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -20,6 +21,11 @@ public class UserService {
     private EventRepository eventRepository;
 
     public User addNewUser(User user) {
+        Optional<User> userIsFound = userRepository.findByEmail(user.getEmail());
+
+        if (userIsFound.isPresent()){
+            return user;
+        }
         return userRepository.save(user);
     }
 
