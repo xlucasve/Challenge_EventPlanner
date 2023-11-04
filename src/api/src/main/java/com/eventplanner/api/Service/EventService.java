@@ -5,11 +5,13 @@ import com.eventplanner.api.Model.CRUDContext;
 import com.eventplanner.api.Model.Event;
 import com.eventplanner.api.Model.User;
 import com.eventplanner.api.Repository.EventRepository;
+import com.eventplanner.api.Utilities.ResponseObjectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -43,8 +45,11 @@ public class EventService {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    public Iterable<Event> findAll() {
-        return eventRepository.findAll();
+    public ResponseEntity<ResponseObjectEvent> findAll() {
+        ResponseObjectEvent responseObjectEvent = new ResponseObjectEvent();
+        List<Event> allEvents = eventRepository.findAll();
+        responseObjectEvent.setEvents(allEvents);
+        return new ResponseEntity<>(responseObjectEvent, HttpStatus.OK);
     }
 
     public ResponseEntity<String> deleteOneEvent(Integer id, User user) {

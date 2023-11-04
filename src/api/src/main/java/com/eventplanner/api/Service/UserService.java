@@ -32,29 +32,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User assignUserToEvent(Integer userId, Integer eventId) {
-        Set<Event> assignedEvents = null;
-        Set<User> usersAssigned = null;
-        User foundUser = userRepository.findById(userId).get();
-        Event foundEvent = eventRepository.findById(eventId).get();
-
-        if(Instant.now().isBefore(foundEvent.getDate())){
-
-            //Add event to user
-            assignedEvents = foundUser.getEvents();
-            assignedEvents.add(foundEvent);
-            foundUser.setEvents(assignedEvents);
-            userRepository.save(foundUser);
-            //Add user to event
-            usersAssigned = foundEvent.getUsers();
-            usersAssigned.add(foundUser);
-            foundEvent.setUsers(usersAssigned);
-            eventRepository.save(foundEvent);
-        }
-
-        return foundUser;
-    }
-
     public Iterable<Event> getAllEventsByUserEmail(User user) {
         return userRepository.findByEmail(user.getEmail()).get().getEvents();
     }

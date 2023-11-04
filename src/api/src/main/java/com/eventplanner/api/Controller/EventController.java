@@ -4,9 +4,12 @@ import com.eventplanner.api.Model.CRUDContext;
 import com.eventplanner.api.Model.Event;
 import com.eventplanner.api.Model.User;
 import com.eventplanner.api.Service.EventService;
+import com.eventplanner.api.Utilities.ResponseObjectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -21,7 +24,7 @@ public class EventController {
         return eventService.addNewEvent(crudContext);
     }
     @GetMapping(path="/planner/event")
-    public Iterable<Event> getAllEvents(){
+    public ResponseEntity<ResponseObjectEvent> getAllEvents(){
         return eventService.findAll();
     }
 

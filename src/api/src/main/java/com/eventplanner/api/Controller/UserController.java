@@ -24,11 +24,6 @@ public class UserController {
         return userService.findAll();
     }
 
-    @PutMapping(path = "/user/{userId}/assign/{eventId}")
-    public User assignUserToEvent(@PathVariable Integer userId, @PathVariable Integer eventId){
-        return userService.assignUserToEvent(userId, eventId);
-    }
-
     @GetMapping(path = "planner/event/byEmail")
     public Iterable<Event> getAllEventsByUserEmail(@RequestBody User user){
         return userService.getAllEventsByUserEmail(user);
