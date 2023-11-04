@@ -1,24 +1,23 @@
 import React from "react";
+import "./EventItem.css";
 
 const EventItem = (props) => {
   return (
     <div className="event-item">
-      <h1 className="title">{props.title}</h1>
+      <img
+        src="https://picsum.photos/300/300"
+        alt="Card Image"
+        className="card-image"
+      ></img>
+      <p className="title">{props.title}</p>
       <div>
-        <span className="texto">Short description: </span>
-        <span className="short_descriptino">{props.shortDescription}</span>
+        <p className="date">{props.date}</p>
       </div>
       <div>
-        <span className="texto">Long description: </span>
-        <span className="long_description">{props.longDescription}</span>
+        <p className="short-description">{props.shortDescription}</p>
       </div>
       <div>
-        <span className="texto">Location: </span>
-        <span className="location">{props.location}</span>
-      </div>
-      <div>
-        <span className="texto">Date: </span>
-        <span className="date">{props.date}</span>
+        <p className="location">{props.location}</p>
       </div>
     </div>
   );
