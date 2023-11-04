@@ -27,24 +27,19 @@ public class EventService {
     private UserRepository userRepository;
 
 
-    public ResponseEntity<String> addNewEvent(CRUDEventContext crudEventContext) {
+    public ResponseEntity<ResponseObjectEvent> addNewEvent(CRUDEventContext crudEventContext) {
         User user = crudEventContext.getUserContext();
         Event event = crudEventContext.getEventContext();
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        String message;
         if (lookUpUser.isPresent()){
             if (lookUpUser.get().isAdmin()){
                 eventRepository.save(event);
-                message = "Succesfully added";
-                return new ResponseEntity<>(message, HttpStatus.OK);
+                return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.OK);
             } else{
-                message = "User does not have permissions required";
-                return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.FORBIDDEN);
             }
         }
-
-        message = "User does not exist";
-        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.NOT_FOUND);
     }
 
     public ResponseEntity<ResponseObjectEvent> findAll() {
@@ -53,33 +48,27 @@ public class EventService {
         return new ResponseEntity<>(new ResponseObjectEvent(events), HttpStatus.OK);
     }
 
-    public ResponseEntity<String> deleteOneEvent(Integer id, User user) {
+    public ResponseEntity<ResponseObjectEvent> deleteOneEvent(Integer id, User user) {
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        String message;
 
         if (lookUpUser.isPresent()) {
             if (lookUpUser.get().isAdmin()) {
                 if (eventRepository.findById(id).isPresent()){
                     eventRepository.deleteById(id);
-                    message = "Event succesfully deleted";
-                    return new ResponseEntity<>(message, HttpStatus.OK);
+                    return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.OK);
                 } else{
-                    message = "Event does not exist";
-                    return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+                    return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.NOT_FOUND);
                 }
             }
-            message = "User does not have permissions required";
-            return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.FORBIDDEN);
         }
-        message = "User does not exist";
-        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<String> updateEvent(CRUDEventContext crudEventContext) {
+    public ResponseEntity<ResponseObjectEvent> updateEvent(CRUDEventContext crudEventContext) {
         User user = crudEventContext.getUserContext();
         Event eventUpdate = crudEventContext.getEventContext();
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        String message;
 
         if (lookUpUser.isPresent()) {
             if (lookUpUser.get().isAdmin()) {
@@ -96,37 +85,43 @@ public class EventService {
 
                     //Save updated Event
                     eventRepository.save(storedEvent);
-                    message = "Event succesfully updated";
-                    return new ResponseEntity<>(message, HttpStatus.OK);
+                    return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.OK);
                 } else{
-                    message = "Event does not exist";
-                    return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+                    return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.NOT_FOUND);
                 }
             }
-            message = "User does not have permissions required";
-            return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.FORBIDDEN);
         }
-        message = "User does not exist";
-        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.NOT_FOUND);
     }
 
-    public Iterable<Event> getAllActiveEvents() {
-        return eventRepository.findAllActiveEvents();
+    public ResponseEntity<ResponseObjectEvent> getAllActiveEvents() {
+        List<Event> events = eventRepository.findAllActiveEvents();
+        List<EventDTO> eventDTOList = new EventDTOMapper().mapEventListToDTO(events);
+        return new ResponseEntity<>(new ResponseObjectEvent(eventDTOList), HttpStatus.OK);
     }
 
-    public Iterable<Event> getAllDraftEvents() {
-        return eventRepository.findAllDraftEvents();
+    public ResponseEntity<ResponseObjectEvent> getAllDraftEvents() {
+        List<Event> events = eventRepository.findAllDraftEvents();
+        List<EventDTO> eventDTOList = new EventDTOMapper().mapEventListToDTO(events);
+        return new ResponseEntity<>(new ResponseObjectEvent(eventDTOList), HttpStatus.OK);
     }
 
-    public Iterable<Event> getAllEventsOrderedByDate() {
-        return eventRepository.getAllEventsOrderedByDate();
+    public ResponseEntity<ResponseObjectEvent> getAllEventsOrderedByDate() {
+        List<Event> events = eventRepository.getAllEventsOrderedByDate();
+        List<EventDTO> eventDTOList = new EventDTOMapper().mapEventListToDTO(events);
+        return new ResponseEntity<>(new ResponseObjectEvent(eventDTOList), HttpStatus.OK);
     }
 
-    public Iterable<Event> getAllEventsOrderedByStatus() {
-        return eventRepository.getAllEventsOrderedByStatus();
+    public ResponseEntity<ResponseObjectEvent> getAllEventsOrderedByStatus() {
+        List<Event> events = eventRepository.getAllEventsOrderedByStatus();
+        List<EventDTO> eventDTOList = new EventDTOMapper().mapEventListToDTO(events);
+        return new ResponseEntity<>(new ResponseObjectEvent(eventDTOList), HttpStatus.OK);
     }
 
-    public Iterable<Event> getAllEventsOrderedByTitle(){
-        return eventRepository.getAllEventsOrderedByTitle();
+    public ResponseEntity<ResponseObjectEvent> getAllEventsOrderedByTitle(){
+        List<Event> events = eventRepository.getAllEventsOrderedByTitle();
+        List<EventDTO> eventDTOList = new EventDTOMapper().mapEventListToDTO(events);
+        return new ResponseEntity<>(new ResponseObjectEvent(eventDTOList), HttpStatus.OK);
     }
 }
