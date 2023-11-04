@@ -12,7 +12,7 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     //STATUS FALSE (0 in MySQL) = Completed Event
     @Query(value = "SELECT e FROM Event e WHERE e.status = false")
-    Iterable<Event> findAllCompletedEvents();
+    Iterable<Event> findAllDraftEvents();
 
     @Query(value = "SELECT e FROM Event e ORDER BY e.date")
     Iterable<Event> getAllEventsOrderedByDate();

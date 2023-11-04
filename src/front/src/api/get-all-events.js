@@ -10,8 +10,7 @@ const getAllEvents = async (setEventsObtained) => {
       requestOptions
     );
     let responseData = await response.json();
-    console.log(responseData);
-    setEventsObtained(responseData);
+    setEventsObtained(responseData.data);
   } catch (error) {
     console.log(error);
   }

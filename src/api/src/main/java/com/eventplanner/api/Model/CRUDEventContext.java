@@ -1,6 +1,6 @@
 package com.eventplanner.api.Model;
 
-public class CRUDContext {
+public class CRUDEventContext {
     private User userContext;
     private Event eventContext;
 

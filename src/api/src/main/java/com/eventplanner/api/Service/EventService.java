@@ -1,7 +1,7 @@
 package com.eventplanner.api.Service;
 
 import com.eventplanner.api.Repository.UserRepository;
-import com.eventplanner.api.Model.CRUDContext;
+import com.eventplanner.api.Model.CRUDEventContext;
 import com.eventplanner.api.Model.Event;
 import com.eventplanner.api.Model.User;
 import com.eventplanner.api.Repository.EventRepository;
@@ -25,9 +25,9 @@ public class EventService {
     private UserRepository userRepository;
 
 
-    public ResponseEntity<String> addNewEvent(CRUDContext crudContext) {
-        User user = crudContext.getUserContext();
-        Event event = crudContext.getEventContext();
+    public ResponseEntity<String> addNewEvent(CRUDEventContext crudEventContext) {
+        User user = crudEventContext.getUserContext();
+        Event event = crudEventContext.getEventContext();
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         String message;
         if (lookUpUser.isPresent()){
@@ -74,9 +74,9 @@ public class EventService {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<String> updateEvent(CRUDContext crudContext) {
-        User user = crudContext.getUserContext();
-        Event eventUpdate = crudContext.getEventContext();
+    public ResponseEntity<String> updateEvent(CRUDEventContext crudEventContext) {
+        User user = crudEventContext.getUserContext();
+        Event eventUpdate = crudEventContext.getEventContext();
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         String message;
 
@@ -113,8 +113,8 @@ public class EventService {
         return eventRepository.findAllActiveEvents();
     }
 
-    public Iterable<Event> getAllCompletedEvents() {
-        return eventRepository.findAllCompletedEvents();
+    public Iterable<Event> getAllDraftEvents() {
+        return eventRepository.findAllDraftEvents();
     }
 
     public Iterable<Event> getAllEventsOrderedByDate() {
