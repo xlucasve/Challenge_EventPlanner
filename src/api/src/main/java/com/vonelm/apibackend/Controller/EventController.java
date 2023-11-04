@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/api/v1")
 public class EventController {
 
