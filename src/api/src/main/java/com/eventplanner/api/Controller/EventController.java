@@ -1,8 +1,8 @@
 package com.eventplanner.api.Controller;
 
-import com.eventplanner.api.Model.CRUDEventContext;
-import com.eventplanner.api.Model.Event;
-import com.eventplanner.api.Model.User;
+import com.eventplanner.api.Model.Events.CRUDEventContext;
+import com.eventplanner.api.Model.Events.Event;
+import com.eventplanner.api.Model.Users.User;
 import com.eventplanner.api.Service.EventService;
 import com.eventplanner.api.Utilities.ResponseObjectEvent;
 import org.springframework.beans.factory.annotation.Autowired;

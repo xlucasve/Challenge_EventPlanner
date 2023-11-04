@@ -1,6 +1,6 @@
 package com.eventplanner.api.Controller;
 
-import com.eventplanner.api.Model.User;
+import com.eventplanner.api.Model.Users.User;
 import com.eventplanner.api.Service.InscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

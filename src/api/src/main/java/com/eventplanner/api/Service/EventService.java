@@ -1,10 +1,12 @@
 package com.eventplanner.api.Service;
 
+import com.eventplanner.api.Model.Events.EventDTO;
 import com.eventplanner.api.Repository.UserRepository;
-import com.eventplanner.api.Model.CRUDEventContext;
-import com.eventplanner.api.Model.Event;
-import com.eventplanner.api.Model.User;
+import com.eventplanner.api.Model.Events.CRUDEventContext;
+import com.eventplanner.api.Model.Events.Event;
+import com.eventplanner.api.Model.Users.User;
 import com.eventplanner.api.Repository.EventRepository;
+import com.eventplanner.api.Utilities.EventDTOMapper;
 import com.eventplanner.api.Utilities.ResponseObjectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,10 +48,9 @@ public class EventService {
     }
 
     public ResponseEntity<ResponseObjectEvent> findAll() {
-        ResponseObjectEvent responseObjectEvent = new ResponseObjectEvent();
         List<Event> allEvents = eventRepository.findAll();
-        responseObjectEvent.setEvents(allEvents);
-        return new ResponseEntity<>(responseObjectEvent, HttpStatus.OK);
+        List<EventDTO> events = new EventDTOMapper().mapEventListToDTO(allEvents);
+        return new ResponseEntity<>(new ResponseObjectEvent(events), HttpStatus.OK);
     }
 
     public ResponseEntity<String> deleteOneEvent(Integer id, User user) {

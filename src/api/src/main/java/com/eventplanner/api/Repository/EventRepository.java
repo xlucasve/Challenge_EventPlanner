@@ -1,9 +1,8 @@
 package com.eventplanner.api.Repository;
 
-import com.eventplanner.api.Model.Event;
+import com.eventplanner.api.Model.Events.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
     //Status TRUE (1 in MySQL) = Active Event

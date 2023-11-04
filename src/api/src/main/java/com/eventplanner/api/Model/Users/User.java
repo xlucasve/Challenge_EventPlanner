@@ -1,5 +1,6 @@
-package com.eventplanner.api.Model;
+package com.eventplanner.api.Model.Users;
 
+import com.eventplanner.api.Model.Events.Event;
 import jakarta.persistence.*;
 
 import java.util.Set;

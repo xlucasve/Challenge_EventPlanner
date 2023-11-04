@@ -1,5 +1,6 @@
-package com.eventplanner.api.Model;
+package com.eventplanner.api.Model.Events;
 
+import com.eventplanner.api.Model.Users.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,4 +1,6 @@
-package com.eventplanner.api.Model;
+package com.eventplanner.api.Model.Events;
+
+import com.eventplanner.api.Model.Users.User;
 
 public class CRUDEventContext {
     private User userContext;
