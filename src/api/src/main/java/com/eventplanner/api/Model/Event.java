@@ -1,14 +1,10 @@
-package com.vonelm.apibackend.Model;
+package com.eventplanner.api.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,11 +34,11 @@ public class Event {
     @ManyToMany(mappedBy = "events", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<User> users;
 
-    public Integer getEvent_id() {
+    public Integer getEventId() {
         return eventId;
     }
 
-    public void setEvent_id(Integer event_id) {
+    public void setEventId(Integer event_id) {
         this.eventId = event_id;
     }
 

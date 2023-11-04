@@ -1,6 +1,6 @@
-package com.vonelm.apibackend.Repository;
+package com.eventplanner.api.Repository;
 
-import com.vonelm.apibackend.Model.Event;
+import com.eventplanner.api.Model.Event;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.vonelm.apibackend.Model;
+package com.eventplanner.api.Model;
 
 public class CRUDContext {
     private User userContext;

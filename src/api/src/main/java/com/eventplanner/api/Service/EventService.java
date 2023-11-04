@@ -1,10 +1,10 @@
-package com.vonelm.apibackend.Service;
+package com.eventplanner.api.Service;
 
-import com.vonelm.apibackend.Model.CRUDContext;
-import com.vonelm.apibackend.Model.Event;
-import com.vonelm.apibackend.Model.User;
-import com.vonelm.apibackend.Repository.EventRepository;
-import com.vonelm.apibackend.Repository.UserRepository;
+import com.eventplanner.api.Repository.UserRepository;
+import com.eventplanner.api.Model.CRUDContext;
+import com.eventplanner.api.Model.Event;
+import com.eventplanner.api.Model.User;
+import com.eventplanner.api.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -77,9 +77,9 @@ public class EventService {
 
         if (lookUpUser.isPresent()) {
             if (lookUpUser.get().isAdmin()) {
-                if (eventRepository.findById(eventUpdate.getEvent_id()).isPresent()){
+                if (eventRepository.findById(eventUpdate.getEventId()).isPresent()){
 
-                    Event storedEvent = eventRepository.findById(eventUpdate.getEvent_id()).get();
+                    Event storedEvent = eventRepository.findById(eventUpdate.getEventId()).get();
 
                     //Make copy of Event with new data
                     storedEvent.setTitle(eventUpdate.getTitle());

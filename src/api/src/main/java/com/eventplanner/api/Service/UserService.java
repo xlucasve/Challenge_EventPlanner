@@ -1,14 +1,13 @@
-package com.vonelm.apibackend.Service;
+package com.eventplanner.api.Service;
 
-import com.vonelm.apibackend.Model.Event;
-import com.vonelm.apibackend.Model.User;
-import com.vonelm.apibackend.Repository.EventRepository;
-import com.vonelm.apibackend.Repository.UserRepository;
+import com.eventplanner.api.Repository.UserRepository;
+import com.eventplanner.api.Model.Event;
+import com.eventplanner.api.Model.User;
+import com.eventplanner.api.Repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 

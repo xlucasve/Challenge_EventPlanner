@@ -1,8 +1,8 @@
-package com.vonelm.apibackend.Controller;
+package com.eventplanner.api.Controller;
 
-import com.vonelm.apibackend.Model.Event;
-import com.vonelm.apibackend.Model.User;
-import com.vonelm.apibackend.Service.UserService;
+import com.eventplanner.api.Model.Event;
+import com.eventplanner.api.Model.User;
+import com.eventplanner.api.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
