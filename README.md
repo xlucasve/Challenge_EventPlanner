@@ -1,6 +1,6 @@
 # Challenge_EventPlanner
 
-- Challenge Técnico de Wiselink de un planificador de eventos. En este entregable se desarrollaron todas las funcionalidades que pueden ser consumidas desde la API. Se implementó una interfaz WEB que permite visualizar todos los eventos cargados. Por último, para una fácil integración se incluyó documentación técnica.
+- Challenge Técnico sobre un planificador de eventos. En este entregable se desarrollaron todas las funcionalidades que pueden ser consumidas desde la API. Se implementó una interfaz WEB que permite visualizar todos los eventos cargados. Por último, para una fácil integración se incluyó documentación técnica.
 
 Desarrollado utilizando:
 
