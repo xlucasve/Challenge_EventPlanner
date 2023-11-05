@@ -2,8 +2,6 @@ package com.eventplanner.api.Utilities;
 
 import com.eventplanner.api.Model.Events.Event;
 import com.eventplanner.api.Model.Events.EventDTO;
-import com.eventplanner.api.Model.Users.User;
-import com.eventplanner.api.Model.Users.UserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ public class EventDTOMapper {
                     event.getLongDescription(),
                     event.getDate(),
                     event.getLocation(),
-                    event.getStatus());
+                    event.getIsDraft());
             eventDTOs.add(eventDTO);
         }
         return eventDTOs;

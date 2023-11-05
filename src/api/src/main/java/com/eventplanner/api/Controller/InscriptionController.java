@@ -14,7 +14,7 @@ public class InscriptionController {
     private InscriptionService inscriptionService;
 
     //Inscribir usuario a un evento
-    @PutMapping(path = "/inscription/{userId}/assign/{eventId}")
+    @PostMapping(path = "/inscription/{userId}/assign/{eventId}")
     public User assignUserToEvent(@PathVariable Integer userId, @PathVariable Integer eventId){
         return inscriptionService.assignUserToEvent(userId, eventId);
     }

@@ -29,7 +29,8 @@ public class Event {
 
     private String location;
 
-    private Boolean status;
+    @Column(name = "is_draft")
+    private Boolean isDraft;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "events", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -83,12 +84,12 @@ public class Event {
         this.location = location;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsDraft() {
+        return isDraft;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsDraft(Boolean isDraft) {
+        this.isDraft = isDraft;
     }
 
     public Set<User> getUsers() {

@@ -30,10 +30,10 @@ public class UserService {
 
     public ResponseEntity<ResponseObjectUser> addNewUser(User user) {
         Optional<User> userIsFound = userRepository.findByEmail(user.getEmail());
-
         if (userIsFound.isPresent()){
             return new ResponseEntity<>(new ResponseObjectUser(), HttpStatus.CONFLICT);
         }
+        userRepository.save(user);
         return new ResponseEntity<>(new ResponseObjectUser(), HttpStatus.CREATED);
     }
 

@@ -17,7 +17,7 @@ public class User {
 
     private String password;
 
-    @Column(name = "is_admin")
+    @Column(name = "isAdmin")
     private Boolean isAdmin;
 
     @ManyToMany
@@ -53,7 +53,7 @@ public class User {
         this.password = password;
     }
 
-    public Boolean isAdmin() {
+    public Boolean getIsAdmin() {
         return isAdmin;
     }
 

@@ -1,8 +1,6 @@
 package com.eventplanner.api.Model.Events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
 
 import java.time.Instant;
 
@@ -19,15 +17,15 @@ public class EventDTO {
 
     private String location;
 
-    private Boolean status;
+    private Boolean isDraft;
 
-    public EventDTO(String title, String shortDescription, String longDescription, Instant date, String location, Boolean status) {
+    public EventDTO(String title, String shortDescription, String longDescription, Instant date, String location, Boolean isDraft) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.date = date;
         this.location = location;
-        this.status = status;
+        this.isDraft = isDraft;
     }
 
     public String getTitle() {
@@ -70,11 +68,11 @@ public class EventDTO {
         this.location = location;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsDraft() {
+        return isDraft;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsDraft(Boolean isDraft) {
+        this.isDraft = isDraft;
     }
 }

@@ -32,7 +32,7 @@ public class EventService {
         Event event = crudEventContext.getEventContext();
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (lookUpUser.isPresent()){
-            if (lookUpUser.get().isAdmin()){
+            if (lookUpUser.get().getIsAdmin()){
                 eventRepository.save(event);
                 return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.OK);
             } else{
@@ -52,7 +52,7 @@ public class EventService {
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 
         if (lookUpUser.isPresent()) {
-            if (lookUpUser.get().isAdmin()) {
+            if (lookUpUser.get().getIsAdmin()) {
                 if (eventRepository.findById(id).isPresent()){
                     eventRepository.deleteById(id);
                     return new ResponseEntity<>(new ResponseObjectEvent(), HttpStatus.OK);
@@ -71,7 +71,7 @@ public class EventService {
         Optional<User> lookUpUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 
         if (lookUpUser.isPresent()) {
-            if (lookUpUser.get().isAdmin()) {
+            if (lookUpUser.get().getIsAdmin()) {
                 if (eventRepository.findById(eventUpdate.getEventId()).isPresent()){
 
                     Event storedEvent = eventRepository.findById(eventUpdate.getEventId()).get();
@@ -81,7 +81,7 @@ public class EventService {
                     storedEvent.setLongDescription(eventUpdate.getLongDescription());
                     storedEvent.setShortDescription(eventUpdate.getShortDescription());
                     storedEvent.setLocation(eventUpdate.getLocation());
-                    storedEvent.setStatus(eventUpdate.getStatus());
+                    storedEvent.setIsDraft(eventUpdate.getIsDraft());
 
                     //Save updated Event
                     eventRepository.save(storedEvent);
