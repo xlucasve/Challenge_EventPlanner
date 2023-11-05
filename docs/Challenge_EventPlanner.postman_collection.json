@@ -1,0 +1,423 @@
+{
+	"info": {
+		"_postman_id": "49bc5eb9-1b36-43ee-b504-829dbf5e93ca",
+		"name": "Challenge_EventPlanner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22688405"
+	},
+	"item": [
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Admin Operations",
+					"item": [
+						{
+							"name": "POST Event Active",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userContext\": {\n        \"email\": \"admin@gmail.test\",\n        \"password\": \"contraseñaSecreta\"\n    },\n    \"eventContext\":{\n        \"title\": \"Sign With Us!\",\n        \"shortDescription\": \"Ven y canta en grupo\",\n        \"longDescription\": \"Canta las nuevas canciones pop y estereo que están rompiendo las discotecas!\",\n        \"location\": \"Capital Federal\",\n        \"date\": \"2023-12-23 18:05:00\",\n        \"isDraft\": false\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/v1/planner/event",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"planner",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Event Draft",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userContext\": {\n        \"email\": \"admin@gmail.test\",\n        \"password\": \"contraseñaSecreta\"\n    },\n    \"eventContext\": {\n        \"title\": \"Uade Expo\",\n        \"shortDescription\": \"Check the new VR\",\n        \"longDescription\": \"Come to UADE to check the new VR experience and how it helps in class\",\n        \"location\": \"Capital Federal\",\n        \"date\": \"2023-08-23 14:05:00\",\n        \"isDraft\": true\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/v1/planner/event",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"planner",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE Event",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userContext\": {\n        \"email\": \"admin@gmail.test\",\n        \"password\": \"contraseñaSecreta\"\n    },\n    \"eventContext\":{\n        \"eventId\": 252,\n        \"title\": \"Sign With Us!\",\n        \"shortDescription\": \"Un evento muy popular\",\n        \"longDescription\": \"Un evento popularizado por las nuevas tendencias tecnologicas del mundo\",\n        \"location\": \"Capital Federal\",\n        \"date\": \"2023-12-23 18:05:00\",\n        \"isDraft\": false\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/v1/planner/event",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"planner",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Event",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.test\",\n    \"password\": \"contraseñaSecreta\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/v1/planner/event/:eventId",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"planner",
+										"event",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "eventId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/planner/event",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"planner",
+								"event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Events Completed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/planner/event/active",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"planner",
+								"event",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET  Events OrderByDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/planner/event/order/date",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"planner",
+								"event",
+								"order",
+								"date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Events OrderByTitle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/planner/event/order/title",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"planner",
+								"event",
+								"order",
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Events OrderByStatus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/planner/event/order/status",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"planner",
+								"event",
+								"order",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v1/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User Events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"correo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/planner/event/:userEmail",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"planner",
+								"event",
+								":userEmail"
+							],
+							"variable": [
+								{
+									"key": "userEmail",
+									"value": "normalUser@gmail.test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"normalUser@gmail.test\",\n    \"password\": \"contraseñaSecreta\",\n    \"is_admin\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/user/add",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST User Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.test\",\n    \"password\": \"contraseñaSecreta\",\n    \"isAdmin\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v1/user/add",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inscription",
+			"item": [
+				{
+					"name": "POST Inscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost8080}}/api/v1/inscription/:userId/assign/:eventId",
+							"host": [
+								"{{localhost8080}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"inscription",
+								":userId",
+								"assign",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "2"
+								},
+								{
+									"key": "eventId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:8080"
+		}
+	]
+}
